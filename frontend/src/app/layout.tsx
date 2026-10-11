@@ -1,19 +1,18 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import type { Metadata } from 'next'
+import './globals.css'
 
 export const metadata: Metadata = {
-  title: "Momentum Studio",
-  description: "A high-end animated landing page experience built with Next.js and Tailwind CSS.",
-};
+  title: {
+    default: 'Kapil Kumar Mahato — Portfolio',
+    template: '%s | Kapil Kumar Mahato',
+  },
+  description: 'Portfolio website for Kapil Kumar Mahato, Fully qualified software engineer.',
+}
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en">
+      <body>{children}</body>
     </html>
-  );
+  )
 }
