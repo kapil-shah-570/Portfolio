@@ -16,7 +16,11 @@ export default async function AboutPage() {
 
       <Section>
         <div className="grid gap-10 md:grid-cols-2">
-          <img src={about.image} alt="About" className="w-full rounded-2xl border border-border" />
+            <img
+            src="/profile-picture.png"
+            alt="Kapil Kumar Mahato, Full Stack Developer"
+            className="aspect-[4/5] w-full rounded-2xl object-cover object-center"
+          />
           <div>
             {about.paragraphs?.map((p, i) => (
               <p key={i} className="mb-4 leading-7 text-slate-400">{p}</p>

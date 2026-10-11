@@ -27,17 +27,27 @@ const hero: Hero = {
 }
 
 const profile: Profile = {
-  name: 'Aarav Mehta',
+  name: 'Kapil Kumar Mahato',
   role: 'Product Designer & Full-Stack Developer',
-  email: 'hello@aaravmehta.dev',
-  phone: '+1 (555) 432-9087',
-  location: 'San Francisco, CA',
+  email: 'hello@kapilkumarmahato.dev',
+  phone: '+9779806317090',
+  location: 'Kalanki, Kathmandu, Nepal',
   avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80',
   bio: 'I help teams turn ambitious ideas into clear, measurable digital experiences.',
   socials: [
-    { label: 'GitHub', url: 'https://github.com' },
-    { label: 'LinkedIn', url: 'https://linkedin.com' },
-    { label: 'X', url: 'https://x.com' },
+    { label: 'GitHub', url: 'https://github.com/kapil-shah-570' },
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/kapil-kumar-mahato' },
+    { label: 'Facebook', url: '' },
+    { label: 'Instagram', url: '' },
+    { label: 'Twitter', url: '' },
+    { label: 'Tiktok', url: '' },
+    { label: 'Viber', url: '' },
+    { label: 'WhatsApp', url: '' },
+     { label: 'Discord', url: '' },
+    { label: 'Telegram', url: '' },
+    { label: 'Email', url: 'kapilmahato776@gmail.com' },
+    
+    
   ],
 }
 
@@ -210,7 +220,7 @@ const blogs: Blog[] = [
     cover: 'https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=1200&q=80',
     date: '2025-04-02',
     published: true,
-    author: 'Aarav Mehta',
+    author: 'Kapil Kumar Mahato',
     readingTime: 5,
     tags: ['Product', 'Strategy'],
   },
@@ -224,7 +234,7 @@ const blogs: Blog[] = [
     cover: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80',
     date: '2025-02-11',
     published: true,
-    author: 'Aarav Mehta',
+    author: 'Kapil Kumar Mahato',
     readingTime: 6,
     tags: ['Next.js', 'Performance'],
   },
@@ -282,15 +292,25 @@ const certificates: Certificate[] = [
 const contact: Contact = {
   heading: 'Let’s build the next chapter together',
   subheading: 'I usually reply within 24 hours.',
-  email: 'hello@aaravmehta.dev',
-  phone: '+1 (555) 432-9087',
-  address: 'San Francisco, CA',
-  officeHours: 'Mon–Fri, 9am–6pm PT',
+  email: 'kapilmahato776@gmail.com',
+  phone: '+9779806317090  +9779702784098',
+  address: 'Kalanki, Kathmandu, Nepal',
+  officeHours: 'Sun–Fri, 9am–6pm PT',
   socials: [
-    { label: 'LinkedIn', url: 'https://linkedin.com' },
-    { label: 'GitHub', url: 'https://github.com' },
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/kapil-kumar-mahato' },
+    { label: 'GitHub', url: 'https://github.com/kapil-shah-570' },
+    { label: 'Facebook', url: 'https://www.facebook.com/kapilmahato.samirmahato.3/' },
+    { label: 'Instagram', url: 'https://www.instagram.com/kapilmahato776/' },
+    { label: 'Twitter', url: '' },
+    { label: 'Tiktok', url: 'https://www.tiktok.com/@kapilshah26' },
+    { label: 'Viber', url: '' },
+    { label: 'WhatsApp', url: '+9779806317090' },
+     { label: 'Discord', url: '' },
+    { label: 'Telegram', url: '+9718434249577' },
+    { label: 'Email', url: 'mailto:kapilmahato776@gmail.com' },
+
   ],
-  mapEmbed: 'https://www.google.com/maps?q=San%20Francisco%20CA&output=embed',
+  mapEmbed: 'https://www.google.com/maps?q=Kalanki%2C%20Kathmandu%2C%20Nepal&output=embed',
 }
 
 const portfolioData = {
