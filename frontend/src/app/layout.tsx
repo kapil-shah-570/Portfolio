@@ -92,6 +92,7 @@ export const metadata: Metadata = {
   // Google Search Console verification
   verification: {
     google: '2gixHu8XRq5o_GWv8UKFHBYxvi151fznErZINhuahL4',
+  //  google1="2gixHu8XRq5o_GWv8UKFHBYxvi151fznErZINhuahL4" 
   },
 }
 

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { serverGet } from '../../../lib/api'
 import { PageHeader, Section, Empty } from '../../../components/ui'
 import type { Education } from '../../../lib/types'
@@ -21,11 +22,11 @@ export default async function EducationPage() {
 
             <ol className="space-y-8">
               {education.timeline.map((entry, i) => (
-                <li key={i} className="relative pl-14">
+                <li key={entry._id ?? entry.slug ?? i} className="relative pl-14">
                   {/* Dot */}
                   <span className="absolute left-2.5 top-1.5 grid h-4 w-4 -translate-x-1/2 place-items-center rounded-full border-2 border-accent bg-bg" />
 
-                  <div className="card p-5">
+                  <Link href={entry.slug ? `/education/${entry.slug}` : '/education'} className="card block p-5">
                     <div className="flex flex-wrap items-center gap-3">
                       {entry.logo && <img src={entry.logo} alt="" className="h-10 w-10 rounded-lg object-cover" />}
                       <div>
@@ -41,7 +42,8 @@ export default async function EducationPage() {
                     {entry.description && (
                       <p className="mt-3 text-sm leading-7 text-slate-400">{entry.description}</p>
                     )}
-                  </div>
+                    {entry.slug && <span className="mt-4 inline-block text-sm text-accent">View education details →</span>}
+                  </Link>
                 </li>
               ))}
             </ol>

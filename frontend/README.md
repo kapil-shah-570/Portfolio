@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Connect the portfolio API
+
+Copy `.env.example` to `.env.local` for local development. Keep `FRONTEND_URL`, `ADMIN_URL`, and `BACKEND_URL` consistent with the matching values in the admin and backend environment files. Set `NEXT_PUBLIC_API_URL` to the backend's browser-accessible URL and `NEXT_PUBLIC_SITE_URL` to this site's public origin. The server-rendered pages also read `API_URL`; leave it pointed at the same API, or set it to a private backend URL reachable from the Next.js server.
+
+For deployment, configure these variables in the frontend hosting provider before building. `NEXT_PUBLIC_API_URL` is included in the client bundle, so it must be a public URL and must not contain credentials. Add the frontend's exact public origin to the backend's `CORS_ORIGINS`.
+
 ## Getting Started
 
 First, run the development server:

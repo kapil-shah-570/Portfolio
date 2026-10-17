@@ -101,6 +101,8 @@ export type About = {
 }
 
 export type EducationEntry = {
+  _id?: string
+  slug?: string
   degree: string
   institution: string
   location?: string

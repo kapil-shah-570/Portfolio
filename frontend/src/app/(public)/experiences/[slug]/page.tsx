@@ -4,74 +4,76 @@ import { serverGet, serverGetBySlug } from '../../../../lib/api'
 import { Badge } from '../../../../components/ui'
 import type { Experience } from '../../../../lib/types'
 
-export async function generateStaticParams() {
-  const experiences = await serverGet<Experience[]>('/experiences').catch(() => [])
-  return experiences.map((experience) => ({ slug: experience.slug }))
+export const dynamic = 'force-dynamic'
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const experience = await serverGetBySlug<Experience>('experiences', slug)
+  return { title: experience ? `${experience.title} at ${experience.company}` : 'Experience' }
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const e = await serverGetBySlug<Experience>('experiences', params.slug)
-  return { title: e ? `${e.title} at ${e.company}` : 'Experience' }
-}
+export default async function ExperienceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const experience = await serverGetBySlug<Experience>('experiences', slug)
+  if (!experience) notFound()
 
-export default async function ExperienceDetailPage({ params }: { params: { slug: string } }) {
-  const exp = await serverGetBySlug<Experience>('experiences', params.slug)
-  if (!exp) notFound()
+  const related = (await serverGet<Experience[]>('/experiences').catch(() => []))
+    .filter((item) => item.slug !== experience.slug)
+    .slice(0, 3)
+  const period = `${experience.startDate}${experience.current ? ' — Present' : experience.endDate ? ` — ${experience.endDate}` : ''}`
 
   return (
-    <article className="container-x section max-w-4xl">
-      <Link href="/experiences" className="text-sm text-slate-400 hover:text-white">← All experience</Link>
-
-      <header className="mt-6 flex flex-wrap items-start gap-6">
-        {exp.companyLogo && <img src={exp.companyLogo} alt="" className="h-16 w-16 rounded-2xl object-cover" />}
-        <div className="flex-1 min-w-0">
-          <h1 className="text-3xl font-bold md:text-5xl">{exp.title}</h1>
-          <p className="mt-2 text-lg text-slate-400">
-            <a href={exp.companyUrl || '#'} target="_blank" rel="noreferrer" className="hover:text-white">{exp.company}</a>
-            {exp.location && ` • ${exp.location}`}
+    <article className="container-x detail-page detail-narrow">
+      <Link href="/experiences" className="detail-back">← All experience</Link>
+      <header className="detail-hero detail-experience-hero">
+        {experience.companyLogo ? <img className="detail-company-logo" src={experience.companyLogo} alt={`${experience.company} logo`} /> : <div className="detail-company-logo detail-company-initial" aria-hidden>{experience.company.slice(0, 1)}</div>}
+        <div className="detail-copy">
+          <span className="detail-kicker">{experience.type} experience</span>
+          <h1 className="detail-title">{experience.title}</h1>
+          <p className="detail-lead">{experience.companyUrl
+            ? <a href={experience.companyUrl} target="_blank" rel="noreferrer">{experience.company} ↗</a>
+            : experience.company}
+            {experience.location && <> <span aria-hidden>·</span> {experience.location}</>}
           </p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <span className="badge">{exp.type}</span>
-            <span className="badge">{exp.startDate} — {exp.current ? 'Present' : exp.endDate}</span>
-          </div>
+          <div className="detail-tags"><Badge>{period}</Badge>{experience.type && <Badge>{experience.type}</Badge>}</div>
         </div>
       </header>
 
-      {exp.description && (
-        <section className="mt-12">
-          <h2 className="text-xl font-semibold">Overview</h2>
-          <p className="mt-3 leading-8 text-slate-400 whitespace-pre-line">{exp.description}</p>
+      {(experience.summary || experience.description) && (
+        <section className="detail-section">
+          <h2 className="detail-section-title">Role overview</h2>
+          {experience.summary && <p className="detail-lead detail-summary">{experience.summary}</p>}
+          {experience.description && <p className="detail-prose">{experience.description}</p>}
         </section>
       )}
 
-      {(exp.responsibilities?.length ?? 0) > 0 && (
-        <section className="mt-10">
-          <h2 className="text-xl font-semibold">Responsibilities</h2>
-          <ul className="mt-3 space-y-2">
-            {exp.responsibilities?.map((r) => (
-              <li key={r} className="relative pl-6 text-slate-400 before:absolute before:left-0 before:text-accent2 before:content-['•']">{r}</li>
-            ))}
-          </ul>
+      {experience.responsibilities && experience.responsibilities.length > 0 && (
+        <section className="detail-section">
+          <h2 className="detail-section-title">Responsibilities</h2>
+          <ul className="detail-bullet-list">{experience.responsibilities.map((item) => <li key={item}>{item}</li>)}</ul>
         </section>
       )}
 
-      {(exp.achievements?.length ?? 0) > 0 && (
-        <section className="mt-10">
-          <h2 className="text-xl font-semibold">Key achievements</h2>
-          <ul className="mt-3 space-y-2">
-            {exp.achievements?.map((a) => (
-              <li key={a} className="relative pl-6 text-slate-400 before:absolute before:left-0 before:font-bold before:text-accent2 before:content-['✓']">{a}</li>
-            ))}
-          </ul>
+      {experience.achievements && experience.achievements.length > 0 && (
+        <section className="detail-section">
+          <h2 className="detail-section-title">Key achievements</h2>
+          <ul className="detail-feature-grid">{experience.achievements.map((item) => <li className="detail-feature" key={item}><span>↗</span>{item}</li>)}</ul>
         </section>
       )}
 
-      {(exp.techStack?.length ?? 0) > 0 && (
-        <section className="mt-10">
-          <h2 className="text-xl font-semibold">Tech stack</h2>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {exp.techStack?.map((t) => <Badge key={t}>{t}</Badge>)}
-          </div>
+      {experience.techStack && experience.techStack.length > 0 && (
+        <section className="detail-section">
+          <h2 className="detail-section-title">Tools & technologies</h2>
+          <div className="detail-tags">{experience.techStack.map((tool) => <Badge key={tool}>{tool}</Badge>)}</div>
+        </section>
+      )}
+
+      {related.length > 0 && (
+        <section className="detail-section detail-related">
+          <h2 className="detail-section-title">Experience timeline</h2>
+          <div className="detail-related-grid">{related.map((item) => <Link href={`/experiences/${item.slug}`} className="card detail-related-card" key={item._id}>
+            <div><p className="detail-related-eyebrow">{item.company} · {item.startDate}{item.endDate ? ` — ${item.endDate}` : item.current ? ' — Present' : ''}</p><h3>{item.title}</h3><p>{item.summary || item.location || item.type}</p><span>View role →</span></div>
+          </Link>)}</div>
         </section>
       )}
     </article>

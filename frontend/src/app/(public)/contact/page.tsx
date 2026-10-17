@@ -8,6 +8,8 @@ export default function ContactPage() {
   const [contact, setContact] = useState<Contact | null>(null)
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const [sent, setSent] = useState(false)
+  const [submissionMessage, setSubmissionMessage] = useState('')
+  const [submissionError, setSubmissionError] = useState('')
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -20,11 +22,19 @@ export default function ContactPage() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
+    setSubmissionError('')
     try {
-      await api.post('/messages', form)
+      const result = await api.post<{ message: string; emailNotification: string }>('/messages', form)
       setForm({ name: '', email: '', subject: '', message: '' })
       setSent(true)
+      setSubmissionMessage(result.emailNotification === 'sent'
+        ? 'Message sent. I’ll get back to you soon.'
+        : result.emailNotification === 'not_configured'
+          ? 'Your message was saved. Email notifications are not configured yet.'
+          : 'Your message was saved, but the email notification could not be delivered.')
       setTimeout(() => setSent(false), 4000)
+    } catch (error) {
+      setSubmissionError(error instanceof Error ? error.message : 'Your message could not be sent. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -60,7 +70,8 @@ export default function ContactPage() {
             <button disabled={loading} className="btn btn-primary w-full">
               {loading ? 'Sending…' : 'Send message'}
             </button>
-            {sent && <p className="mt-3 text-sm text-emerald-400">✅ Message sent!</p>}
+            {sent && <p role="status" className="mt-3 text-sm text-emerald-400">{submissionMessage}</p>}
+            {submissionError && <p role="alert" className="mt-3 text-sm text-red-400">{submissionError}</p>}
           </form>
 
           <div className="space-y-6">

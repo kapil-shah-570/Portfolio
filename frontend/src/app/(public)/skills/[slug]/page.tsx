@@ -1,93 +1,71 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { serverGetBySlug, serverGet } from '../../../../lib/api'
+import { serverGet, serverGetBySlug } from '../../../../lib/api'
 import { Badge } from '../../../../components/ui'
 import type { Skill } from '../../../../lib/types'
 
-export async function generateStaticParams() {
-  const skills = await serverGet<Skill[]>('/skills').catch(() => [])
-  return skills.map((skill) => ({ slug: skill.slug }))
-}
+export const dynamic = 'force-dynamic'
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const skill = await serverGetBySlug<Skill>('skills', params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const skill = await serverGetBySlug<Skill>('skills', slug)
   return { title: skill ? `${skill.name} — Skills` : 'Skill' }
 }
 
-export default async function SkillDetailPage({ params }: { params: { slug: string } }) {
-  const skill = await serverGetBySlug<Skill>('skills', params.slug)
+export default async function SkillDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const skill = await serverGetBySlug<Skill>('skills', slug)
   if (!skill) notFound()
 
   const related = (await serverGet<Skill[]>('/skills').catch(() => []))
-    .filter((s) => s.category === skill.category && s.slug !== skill.slug)
+    .filter((item) => item.category === skill.category && item.slug !== skill.slug)
     .slice(0, 3)
 
   return (
-    <article className="container-x section max-w-4xl">
-      <Link href="/skills" className="text-sm text-slate-400 hover:text-white">← All skills</Link>
-
-      <header className="mt-6 flex items-start gap-5">
-        <div className="grid h-16 w-16 place-items-center rounded-2xl border border-border bg-card text-3xl">
-          {skill.icon}
-        </div>
-        <div>
-          <span className="eyebrow mb-2">{skill.category}</span>
-          <h1 className="text-3xl font-bold md:text-5xl">{skill.name}</h1>
-          {skill.yearsOfExperience ? (
-            <p className="mt-2 text-slate-400">{skill.yearsOfExperience} years of experience</p>
-          ) : null}
+    <article className="container-x detail-page detail-narrow">
+      <Link href="/skills" className="detail-back">← All skills</Link>
+      <header className="detail-hero detail-skill-hero">
+        <div className="detail-skill-icon" aria-hidden>{skill.icon || skill.name.slice(0, 1)}</div>
+        <div className="detail-copy">
+          <span className="detail-kicker">{skill.category}</span>
+          <h1 className="detail-title">{skill.name}</h1>
+          {skill.summary && <p className="detail-lead">{skill.summary}</p>}
+          {skill.yearsOfExperience != null && <p className="detail-secondary">{skill.yearsOfExperience} {skill.yearsOfExperience === 1 ? 'year' : 'years'} of experience</p>}
         </div>
       </header>
 
-      <div className="mt-8 panel">
-        <div className="flex items-center justify-between text-sm">
-          <span className="text-slate-400">Proficiency</span>
-          <strong>{skill.level}%</strong>
-        </div>
-        <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-800">
-          <span className="block h-full rounded-full bg-gradient-to-r from-accent to-accent2" style={{ width: `${skill.level}%` }} />
-        </div>
-      </div>
+      <section className="detail-meter" aria-label={`Proficiency ${skill.level} percent`}>
+        <div className="detail-meter-heading"><span>Proficiency</span><strong>{skill.level}%</strong></div>
+        <div className="detail-meter-track"><span style={{ width: `${Math.min(100, Math.max(0, skill.level))}%` }} /></div>
+      </section>
 
       {skill.description && (
-        <section className="mt-10">
-          <h2 className="text-xl font-semibold">Overview</h2>
-          <p className="mt-3 leading-8 text-slate-400 whitespace-pre-line">{skill.description}</p>
+        <section className="detail-section">
+          <h2 className="detail-section-title">About this skill</h2>
+          <p className="detail-prose">{skill.description}</p>
         </section>
       )}
 
-      {(skill.highlights?.length ?? 0) > 0 && (
-        <section className="mt-10">
-          <h2 className="text-xl font-semibold">Highlights</h2>
-          <ul className="mt-3 space-y-2">
-            {skill.highlights?.map((h) => (
-              <li key={h} className="relative pl-6 text-slate-400 before:absolute before:left-0 before:font-bold before:text-accent2 before:content-['✓']">{h}</li>
-            ))}
-          </ul>
+      {skill.highlights && skill.highlights.length > 0 && (
+        <section className="detail-section">
+          <h2 className="detail-section-title">Areas of experience</h2>
+          <ul className="detail-feature-grid">{skill.highlights.map((item) => <li className="detail-feature" key={item}><span>✓</span>{item}</li>)}</ul>
         </section>
       )}
 
-      {(skill.tools?.length ?? 0) > 0 && (
-        <section className="mt-10">
-          <h2 className="text-xl font-semibold">Tools & libraries</h2>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {skill.tools?.map((t) => <Badge key={t}>{t}</Badge>)}
-          </div>
+      {skill.tools && skill.tools.length > 0 && (
+        <section className="detail-section">
+          <h2 className="detail-section-title">Tools & technologies</h2>
+          <div className="detail-tags">{skill.tools.map((tool) => <Badge key={tool}>{tool}</Badge>)}</div>
         </section>
       )}
 
       {related.length > 0 && (
-        <section className="mt-14 border-t border-border pt-8">
-          <h2 className="text-xl font-semibold">Related skills</h2>
-          <div className="mt-4 grid gap-4 sm:grid-cols-3">
-            {related.map((s) => (
-              <Link key={s._id} href={`/skills/${s.slug}`} className="card p-4 block">
-                <div className="text-2xl">{s.icon}</div>
-                <h4 className="mt-2 font-semibold">{s.name}</h4>
-                <p className="text-xs text-slate-400">{s.level}% proficiency</p>
-              </Link>
-            ))}
-          </div>
+        <section className="detail-section detail-related">
+          <h2 className="detail-section-title">More {skill.category} skills</h2>
+          <div className="detail-related-grid">{related.map((item) => <Link href={`/skills/${item.slug}`} className="card detail-related-card detail-related-skill" key={item._id}>
+            <div className="detail-skill-icon small" aria-hidden>{item.icon || item.name.slice(0, 1)}</div><div><h3>{item.name}</h3><p>{item.summary || `${item.level}% proficiency`}</p><span>View skill →</span></div>
+          </Link>)}</div>
         </section>
       )}
     </article>

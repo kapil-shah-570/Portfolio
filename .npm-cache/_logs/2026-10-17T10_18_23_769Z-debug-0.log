@@ -1,0 +1,72 @@
+0 verbose cli /Users/kapilmahato/.nvm/versions/node/v22.12.0/bin/node /Users/kapilmahato/.nvm/versions/node/v22.12.0/bin/npm
+0 verbose cli /Users/kapilmahato/.nvm/versions/node/v22.12.0/bin/node /Users/kapilmahato/.nvm/versions/node/v22.12.0/bin/npm
+1 info using npm@11.17.0
+1 info using npm@11.17.0
+2 info using node@v22.12.0
+2 info using node@v22.12.0
+3 silly config load:file:/Users/kapilmahato/.nvm/versions/node/v22.12.0/lib/node_modules/npm/npmrc
+3 silly config load:file:/Users/kapilmahato/.nvm/versions/node/v22.12.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/kapilmahato/Downloads/portfolio/.npmrc
+4 silly config load:file:/Users/kapilmahato/Downloads/portfolio/.npmrc
+5 silly config load:file:/Users/kapilmahato/.npmrc
+5 silly config load:file:/Users/kapilmahato/.npmrc
+6 silly config load:file:/Users/kapilmahato/.nvm/versions/node/v22.12.0/etc/npmrc
+6 silly config load:file:/Users/kapilmahato/.nvm/versions/node/v22.12.0/etc/npmrc
+7 verbose title npm run build
+7 verbose title npm run build
+8 verbose argv "run" "build"
+8 verbose argv "run" "build"
+9 verbose logfile logs-max:10 dir:/Users/kapilmahato/Downloads/portfolio/.npm-cache/_logs/2026-10-17T10_18_23_769Z-
+9 verbose logfile logs-max:10 dir:/Users/kapilmahato/Downloads/portfolio/.npm-cache/_logs/2026-10-17T10_18_23_769Z-
+10 verbose logfile /Users/kapilmahato/Downloads/portfolio/.npm-cache/_logs/2026-10-17T10_18_23_769Z-debug-0.log
+10 verbose logfile /Users/kapilmahato/Downloads/portfolio/.npm-cache/_logs/2026-10-17T10_18_23_769Z-debug-0.log
+11 silly logfile start cleaning logs, removing 3 files
+11 silly logfile start cleaning logs, removing 3 files
+12 verbose stack Error: Could not read package.json: Error: ENOENT: no such file or directory, open '/Users/kapilmahato/Downloads/portfolio/package.json'
+12 verbose stack     at async open (node:internal/fs/promises:638:25)
+12 verbose stack     at async readFile (node:internal/fs/promises:1238:14)
+12 verbose stack     at async read (/Users/kapilmahato/.nvm/versions/node/v22.12.0/lib/node_modules/npm/node_modules/@npmcli/package-json/lib/read-package.js:9:18)
+12 verbose stack     at async PackageJson.load (/Users/kapilmahato/.nvm/versions/node/v22.12.0/lib/node_modules/npm/node_modules/@npmcli/package-json/lib/index.js:131:31)
+12 verbose stack     at async PackageJson.normalize (/Users/kapilmahato/.nvm/versions/node/v22.12.0/lib/node_modules/npm/node_modules/@npmcli/package-json/lib/index.js:117:5)
+12 verbose stack     at async #run (/Users/kapilmahato/.nvm/versions/node/v22.12.0/lib/node_modules/npm/lib/commands/run.js:90:13)
+12 verbose stack     at async RunScript.exec (/Users/kapilmahato/.nvm/versions/node/v22.12.0/lib/node_modules/npm/lib/commands/run.js:44:7)
+12 verbose stack     at async Npm.exec (/Users/kapilmahato/.nvm/versions/node/v22.12.0/lib/node_modules/npm/lib/npm.js:193:9)
+12 verbose stack     at async module.exports (/Users/kapilmahato/.nvm/versions/node/v22.12.0/lib/node_modules/npm/lib/cli/entry.js:67:5)
+12 verbose stack Error: Could not read package.json: Error: ENOENT: no such file or directory, open '/Users/kapilmahato/Downloads/portfolio/package.json'
+12 verbose stack     at async open (node:internal/fs/promises:638:25)
+12 verbose stack     at async readFile (node:internal/fs/promises:1238:14)
+12 verbose stack     at async read (/Users/kapilmahato/.nvm/versions/node/v22.12.0/lib/node_modules/npm/node_modules/@npmcli/package-json/lib/read-package.js:9:18)
+12 verbose stack     at async PackageJson.load (/Users/kapilmahato/.nvm/versions/node/v22.12.0/lib/node_modules/npm/node_modules/@npmcli/package-json/lib/index.js:131:31)
+12 verbose stack     at async PackageJson.normalize (/Users/kapilmahato/.nvm/versions/node/v22.12.0/lib/node_modules/npm/node_modules/@npmcli/package-json/lib/index.js:117:5)
+12 verbose stack     at async #run (/Users/kapilmahato/.nvm/versions/node/v22.12.0/lib/node_modules/npm/lib/commands/run.js:90:13)
+12 verbose stack     at async RunScript.exec (/Users/kapilmahato/.nvm/versions/node/v22.12.0/lib/node_modules/npm/lib/commands/run.js:44:7)
+12 verbose stack     at async Npm.exec (/Users/kapilmahato/.nvm/versions/node/v22.12.0/lib/node_modules/npm/lib/npm.js:193:9)
+12 verbose stack     at async module.exports (/Users/kapilmahato/.nvm/versions/node/v22.12.0/lib/node_modules/npm/lib/cli/entry.js:67:5)
+13 error code ENOENT
+13 error code ENOENT
+14 error syscall open
+14 error syscall open
+15 error path /Users/kapilmahato/Downloads/portfolio/package.json
+15 error path /Users/kapilmahato/Downloads/portfolio/package.json
+16 error errno -2
+16 error errno -2
+17 error enoent Could not read package.json: Error: ENOENT: no such file or directory, open '/Users/kapilmahato/Downloads/portfolio/package.json'
+17 error enoent Could not read package.json: Error: ENOENT: no such file or directory, open '/Users/kapilmahato/Downloads/portfolio/package.json'
+18 error enoent This is related to npm not being able to find a file.
+18 error enoent
+18 error enoent This is related to npm not being able to find a file.
+18 error enoent
+19 verbose cwd /Users/kapilmahato/Downloads/portfolio
+20 verbose os Darwin 25.6.0
+19 verbose cwd /Users/kapilmahato/Downloads/portfolio
+21 verbose node v22.12.0
+22 verbose npm  v11.17.0
+20 verbose os Darwin 25.6.0
+23 verbose exit -2
+21 verbose node v22.12.0
+24 verbose code -2
+22 verbose npm  v11.17.0
+23 verbose exit -2
+24 verbose code -2
+25 error A complete log of this run can be found in: /Users/kapilmahato/Downloads/portfolio/.npm-cache/_logs/2026-10-17T10_18_23_769Z-debug-0.log
+25 error A complete log of this run can be found in: /Users/kapilmahato/Downloads/portfolio/.npm-cache/_logs/2026-10-17T10_18_23_769Z-debug-0.log

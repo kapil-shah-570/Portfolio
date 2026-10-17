@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Admin
 
-## Getting Started
+The admin app manages blogs, certificates, skills, projects, work experience, and education entries through the Express API in `../backend`.
 
-First, run the development server:
+## Start locally
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. In `backend`, copy `.env.example` to `.env` and set `ADMIN_EMAIL`, `ADMIN_PASSWORD`, and `ADMIN_SESSION_SECRET`. Use the Gmail address you want to sign in with, choose a long private password, and generate the session secret with `openssl rand -hex 32`.
+2. Start the API:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```sh
+   cd backend
+   npm run dev
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. In `admin`, copy `.env.example` to `.env.local` if the API or portfolio uses a different address, then start the admin app:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```sh
+   cd admin
+   npm run dev -- --port 3001
+   ```
 
-## Learn More
+4. Open the admin app, sign in with the configured email and password, and choose a collection.
 
-To learn more about Next.js, take a look at the following resources:
+The email and password are checked only by the backend; do not put them in `admin/.env.local` or a `NEXT_PUBLIC_*` variable. After sign-in, the API issues a signed, HTTP-only session cookie that expires after 12 hours. The password is not kept in browser storage. Sign out to clear the cookie.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+For deployment, keep `FRONTEND_URL`, `ADMIN_URL`, and `BACKEND_URL` consistent in each app's environment settings. Set `NEXT_PUBLIC_API_URL` to the browser-accessible HTTPS backend URL and `NEXT_PUBLIC_SITE_URL` to the public portfolio URL before building the admin app. The backend uses `FRONTEND_URL` and `ADMIN_URL` to allow the two app origins. If the admin app and API share a site (for example, sibling subdomains), keep `ADMIN_COOKIE_SAME_SITE=strict`; if they are on different sites, set it to `none` and use HTTPS for both. Cross-site cookies may still be restricted by some browsers, so using sibling subdomains is preferred.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Managing content
 
-## Deploy on Vercel
+Every collection has a list, create, and edit screen. The slug field is suggested from the title (or name/degree), can be edited, and is checked for uniqueness by the API. List fields accept comma-separated values. New blog posts are published by default and can be saved as drafts by turning off **Published**. When editing, clearing an optional field removes its old value. Changes are stored in MongoDB and the public site reads the current collection data from the API.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+For API routes, data format, environment setup, and storage details, see [`../backend/README.md`](../backend/README.md).
