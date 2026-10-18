@@ -43,7 +43,7 @@ export default function ProjectsListPage() {
         {loading ? <p role="status" className="text-sm text-slate-400">Loading projects…</p> : error ? (
           <div role="alert" className="rounded-xl border border-red-400/20 bg-red-400/5 p-5 text-sm text-red-200">
             <p>{error}</p>
-            <button className="mt-3 underline" onClick={() => { setError(''); setLoading(true); setRetryCount((count) => count + 1) }}>Try again</button>
+            <button className="btn btn-ghost btn-sm mt-3" onClick={() => { setError(''); setLoading(true); setRetryCount((count) => count + 1) }}>Try again</button>
           </div>
         ) : visible.length === 0 ? <Empty text="No projects in this category." /> : (
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

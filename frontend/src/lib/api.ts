@@ -19,10 +19,10 @@ const hero: Hero = {
   ctaPrimary: { label: 'View projects', to: '/projects' },
   ctaSecondary: { label: 'Book a call', to: '/contact' },
   stats: [
-    { label: 'Years experience', value: '6+' },
-    { label: 'Projects shipped', value: '30+' },
-    { label: 'Design systems', value: '12' },
-    { label: 'Clients served', value: '18' },
+    { label: 'Years experience', value: '1+' },
+    { label: 'Projects shipped', value: '6+' },
+    { label: 'Design systems', value: '5' },
+    { label: 'Clients served', value: '6' },
   ],
 }
 
@@ -61,16 +61,18 @@ const about: About = {
   subheading: 'Designing systems, shipping products, and helping teams grow with clarity.',
   image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1200&q=80',
   paragraphs: [
-    'I am a multidisciplinary designer and engineer who enjoys solving product problems at the intersection of product thinking, UX, and software craftsmanship.',
-    'My work centers on turning ambiguous ideas into experiences people understand quickly and enjoy using. I focus on the fundamentals: clear communication, strong systems, and intentional product polish.',
+    'I am a passionate Software Developer focused on building modern, scalable, responsive, and high-performance web applications. I enjoy transforming ideas into functional digital experiences by combining clean code, thoughtful UI/UX design, robust backend architecture, and modern development technologies.My development expertise includes frontend engineering, backend development, full-stack web applications, REST API integration, database management, authentication systems, and responsive interface design. I work with technologies such as HTML, CSS, JavaScript, TypeScript, React.js, Next.js, Node.js, Express.js, and MongoDB to develop reliable and maintainable applications.Beyond application development, I explore cloud computing, AWS deployment, DevOps practices, containerization with Docker, Kubernetes orchestration, and CI/CD automation. I use Git and GitHub for version control, collaboration, source code management, and project tracking, while focusing on improving application reliability and deployment workflows.I am committed to continuous learning, solving challenging technical problems, writing maintainable code, and exploring emerging technologies. My goal is to engineer meaningful digital solutions that combine performance, usability, security, and scalability.',
   ],
   highlights: ['Design systems and product strategy', 'Frontend architecture and performance', 'Cross-functional team leadership'],
-  mission: 'Build experiences that feel effortless for users and valuable for businesses.',
-  vision: 'Create digital products that are not only beautiful but measurable, resilient, and easy to grow.',
+  mission: 'To design, develop, and deploy meaningful digital solutions by combining modern software engineering, creative problem-solving, clean architecture, and continuous learning. My mission is to turn complex ideas into practical, secure, efficient, and user-friendly applications.',
+  vision: 'To become a highly skilled software engineer capable of architecting and delivering scalable digital products, contributing to innovative projects, and building reliable applications that make a meaningful impact on businesses and users worldwide.',
   values: [
-    { title: 'Clarity', description: 'A clear strategy makes stronger products.' },
-    { title: 'Craft', description: 'I care deeply about the details users feel every day.' },
-    { title: 'Velocity', description: 'Fast execution with strong systems keeps teams moving.' },
+    { title: 'Clean Code & Engineering Excellence', description: 'I strive to write readable, reusable, maintainable, and efficient code while following appropriate software engineering principles.' },
+    { title: 'Innovation & Creativity', description: 'I explore new ideas, modern frameworks, and innovative approaches to solve real-world problems.' },
+    { title: 'Continuous Learning', description: 'I continuously improve my technical knowledge by exploring emerging technologies, experimenting with tools, and building projects.' },
+    {title:'Security & Reliability', description:'I prioritize security, reliability, and performance in all applications I develop, ensuring they meet industry standards and best practices.'},
+    {title:'Collaboration & Communication ', description:'I believe in teamwork, transparent communication, knowledge sharing, and constructive feedback.'},
+    {title:'Problem-Solving & Ownership', description:'I take ownership of challenges, analyze problems, and implement effective solutions while learning from mistakes and iterating on improvements.'},
   ],
 }
 
@@ -94,11 +96,8 @@ const contact: Contact = {
     { label: 'GitHub', url: 'https://github.com/kapil-shah-570' },
     { label: 'Facebook', url: 'https://www.facebook.com/kapilmahato.samirmahato.3/' },
     { label: 'Instagram', url: 'https://www.instagram.com/kapilmahato776/' },
-    { label: 'Twitter', url: '' },
     { label: 'Tiktok', url: 'https://www.tiktok.com/@kapilshah26' },
-    { label: 'Viber', url: '' },
     { label: 'WhatsApp', url: '+9779806317090' },
-     { label: 'Discord', url: '' },
     { label: 'Telegram', url: '+9718434249577' },
     { label: 'Email', url: 'mailto:kapilmahato776@gmail.com' },
 

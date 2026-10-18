@@ -1,6 +1,14 @@
 import { serverGet } from '../../../lib/api'
 import { PageHeader, Section } from '../../../components/ui'
 import type { About, Profile } from '../../../lib/types'
+import TechnicalSkills from '@/components/about_section/TechnicalSkills'
+import DevelopmentWorkflow from '@/components/about_section/DevelopmentWorkflow'
+import DevelopmentApproach from '@/components/about_section/DevelopmentApproach'
+import ProjectsSection from '@/components/about_section/ProjectsSection'
+import ServicesSection from '@/components/home_section/ServicesSection'
+import ProfessionalGoals from '@/components/about_section/ProfessionalGoals'
+// import ContactSection from '@/components/about_section/ContactSection'
+
 
 export const metadata = { title: 'About — Portfolio' }
 
@@ -73,6 +81,14 @@ export default async function AboutPage() {
           </div>
         </Section>
       )}
+      <TechnicalSkills />
+      <DevelopmentWorkflow />
+      <DevelopmentApproach />
+      <ProjectsSection />
+      <ServicesSection />
+      <ProfessionalGoals />
+      {/* <ContactSection /> */}
+      
     </>
   )
 }

@@ -1,7 +1,101 @@
+// import Link from 'next/link';
+// import PortfolioHomeSections from '@/components/home_section/PortfolioHomeSections';
+
+// export default function HomePage() {
+//   return (
+//     <>
+//       <section className="relative isolate overflow-hidden py-20 md:py-5">
+//         <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+//           <div className="absolute -left-32 top-10 h-72 w-72 rounded-full bg-indigo-600/20 blur-[120px]" />
+//           <div className="absolute -right-20 bottom-0 h-96 w-96 rounded-full bg-violet-600/20 blur-[140px]" />
+//           <div className="absolute inset-0 bg-[radial-gradient(#64748b18_1px,transparent_1px)] [background-size:28px_28px]" />
+//         </div>
+
+//         <div className="container-x grid items-center gap-16 lg:grid-cols-[1.1fr_.9fr]">
+//           <div className="animate-fade-up">
+//             <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-4 py-2 text-sm text-emerald-300">
+//               <span className="relative flex h-2 w-2">
+//                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+//                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+//               </span>
+//               Full-stack developer
+//             </div>
+
+//             <h1 className="max-w-3xl text-5xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-6xl xl:text-7xl">
+//               Building digital products with code and creativity.
+//             </h1>
+
+//             <p className="mt-7 max-w-xl text-base leading-8 text-slate-400 md:text-lg">
+//               I design and build modern web experiences, backend systems, dashboards, and deployment-ready solutions for real-world products.
+//             </p>
+
+//             <div className="mt-9 flex flex-wrap items-center gap-4">
+//               <Link href="/projects" className="group inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 px-6 py-4 font-semibold text-white shadow-lg shadow-indigo-500/20 transition duration-300 hover:-translate-y-1 hover:shadow-indigo-500/40">
+//                 View projects
+//                 <span className="transition-transform group-hover:translate-x-1">→</span>
+//               </Link>
+
+//               <Link href="/contact" className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-6 py-4 font-semibold text-white transition duration-300 hover:border-indigo-400/50 hover:bg-white/[0.07]">
+//                 Contact me
+//               </Link>
+//             </div>
+
+//             <div className="mt-12 grid grid-cols-2 gap-6 border-t border-white/10 pt-8 sm:grid-cols-4">
+//               {[
+//                 { value: '3+', label: 'Years of work' },
+//                 { value: '20+', label: 'Projects built' },
+//                 { value: '100%', label: 'Focus on quality' },
+//                 { value: '24/7', label: 'Curiosity' },
+//               ].map((s) => (
+//                 <div key={s.label} className="group">
+//                   <strong className="block text-2xl font-bold text-white transition-colors group-hover:text-indigo-400 md:text-3xl">
+//                     {s.value}
+//                   </strong>
+//                   <span className="mt-2 block text-xs leading-5 text-slate-500">{s.label}</span>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+
+//           <div className="relative mx-auto w-full max-w-md animate-fade-up">
+//             <div className="absolute inset-8 rounded-[2.5rem] bg-gradient-to-br from-indigo-500/30 to-violet-500/30 blur-3xl" />
+//             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/80 p-3 shadow-2xl shadow-indigo-950/40">
+//               <div className="relative overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-slate-800 to-indigo-950">
+//                 <img
+//                   src="/profile-picture.png"
+//                   alt="Kapil Kumar Mahato, Full Stack Developer"
+//                   className="aspect-[4/5] w-full rounded-2xl object-cover object-center"
+//                 />
+//                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
+//                 <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+//                   <p className="text-xs font-semibold uppercase tracking-[0.3em] text-indigo-300">Developer & Creator</p>
+//                   <h2 className="mt-2 text-2xl font-bold text-white md:text-3xl">Kapil Kumar Mahato</h2>
+//                   <p className="mt-2 text-sm text-slate-300">Building digital products with code and creativity.</p>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+
+//       <PortfolioHomeSections />
+//     </>
+//   );
+// }
+
+
+
+
+
+
+
+
+
 import Link from 'next/link'
 import { serverGet } from '../../lib/api'
 import { Section, Badge } from '../../components/ui'
 import type { Hero, Profile, Skill, Project, Blog, Experience } from '../../lib/types'
+import PortfolioHomeSections from '@/components/home_section/PortfolioHomeSections'
 
 export default async function HomePage() {
   const [hero, profile, skills, projects, experiences, blogs] = await Promise.all([
@@ -273,6 +367,8 @@ export default async function HomePage() {
           ))}
         </div>
       </Section>
+      
+       <PortfolioHomeSections  />
 
       <Section>
         <div className="rounded-3xl border border-border bg-gradient-to-br from-accent/20 to-accent2/10 p-10 text-center">
@@ -281,6 +377,7 @@ export default async function HomePage() {
           <Link href="/contact" className="btn btn-primary mt-6">Start a conversation</Link>
         </div>
       </Section>
+  
     </>
   )
 }

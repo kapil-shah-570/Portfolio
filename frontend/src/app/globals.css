@@ -95,6 +95,7 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   border-radius: 9999px;
   border: 1px solid transparent;
   padding: 0.8rem 1.35rem;
@@ -103,22 +104,92 @@ img {
 }
 
 .btn:hover { transform: translateY(-1px); }
+.btn:focus-visible,
+.about-link:focus-visible,
+.about-icon-link:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
+}
+.btn:disabled { cursor: not-allowed; opacity: 0.65; transform: none; }
 
 .btn-primary {
   background: linear-gradient(135deg, var(--accent), #8b5cf6 60%, var(--accent-2));
   color: white;
   box-shadow: 0 18px 30px rgba(124, 58, 237, 0.35);
 }
+.btn-primary:hover { filter: brightness(1.08); }
 
 .btn-ghost {
   border-color: var(--border);
   background: rgba(15, 23, 42, 0.5);
   color: var(--foreground);
 }
+.btn-ghost:hover {
+  border-color: rgba(34, 211, 238, 0.55);
+  background: rgba(34, 211, 238, 0.08);
+}
 
 .btn-sm {
   padding: 0.55rem 0.9rem;
   font-size: 0.82rem;
+}
+
+.about-section {
+  padding: 4.5rem 0;
+  color: var(--foreground);
+}
+
+.about-shell {
+  width: min(1180px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.about-card {
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  background: rgba(15, 23, 42, 0.72);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.42);
+  box-shadow: 0 22px 40px rgba(34, 211, 238, 0.1);
+}
+
+.about-kicker {
+  color: #c4b5fd;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.about-link {
+  color: #a5f3fc;
+  transition: color 0.2s ease;
+}
+
+.about-link:hover { color: white; }
+
+.about-icon-link {
+  display: inline-flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  color: var(--muted);
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.about-icon-link:hover {
+  border-color: rgba(34, 211, 238, 0.55);
+  background: rgba(34, 211, 238, 0.08);
+  color: #a5f3fc;
 }
 
 .badge,
