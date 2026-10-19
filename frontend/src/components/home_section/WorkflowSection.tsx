@@ -22,7 +22,7 @@ export default function WorkflowSection() {
     <>
       <section id="workflow" className="about-section">
         <div className="about-shell">
-          <p className="about-kicker">Development Workflow</p>
+          {/* <p className="about-kicker">Development Workflow</p> */}
           <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Planning through deployment and maintenance</h2>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {workflowSteps.map((step) => (

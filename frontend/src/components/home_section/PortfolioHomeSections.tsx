@@ -3,7 +3,7 @@ import QuickHighlightsSection from './QuickHighlightsSection';
 import TechnicalSkillsSection from './TechnicalSkillsSection';
 import ServicesSection from './ServicesSection';
 // import FeaturedProjectsSection from './FeaturedProjectsSection';
-import ExperienceTimelineSection from './ExperienceTimelineSection';
+// import ExperienceTimelineSection from './ExperienceTimelineSection';
 import WorkflowSection from './WorkflowSection';
 // import ValuesGoalsContactSection from './ValuesGoalsContactSection';
 
@@ -15,7 +15,7 @@ export default function PortfolioHomeSections() {
       <TechnicalSkillsSection />
       <ServicesSection />
       {/* <FeaturedProjectsSection /> */}
-      <ExperienceTimelineSection />
+      {/* <ExperienceTimelineSection /> */}
       <WorkflowSection />
       {/* <ValuesGoalsContactSection /> */}
     </>

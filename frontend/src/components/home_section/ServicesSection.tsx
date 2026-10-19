@@ -11,7 +11,7 @@ export default function ServicesSection() {
   return (
     <section id="services" className="about-section">
       <div className="about-shell">
-        <p className="about-kicker">Services & Expertise</p>
+        {/* <p className="about-kicker">Services & Expertise</p> */}
         <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Full-stack development, APIs and deployment</h2>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
           {serviceCards.map((item, index) => (

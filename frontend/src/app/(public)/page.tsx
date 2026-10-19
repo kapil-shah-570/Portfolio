@@ -288,7 +288,7 @@ export default async function HomePage() {
 
 
 
-
+ <PortfolioHomeSections  />
 
 
 
@@ -367,8 +367,8 @@ export default async function HomePage() {
           ))}
         </div>
       </Section>
+
       
-       <PortfolioHomeSections  />
 
       <Section>
         <div className="rounded-3xl border border-border bg-gradient-to-br from-accent/20 to-accent2/10 p-10 text-center">
